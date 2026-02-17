@@ -65,6 +65,16 @@ A modern, full-stack bookmark manager built with **Next.js 14**, **Supabase**, a
 - `src/utils`: Utility functions and helpers.
 - `src/styles`: Global styles and Tailwind configuration.
 
+## Challenges Faced & Solutions
+
+### 1. Supabase Schema and Row Level Security (RLS)
+**Challenge:** Configuring the database schema and implementing secure access control was initially challenging. Specifically, understanding how to apply Row Level Security (RLS) policies to ensure users could only access their own bookmarks required a deep dive into PostgreSQL and Supabase documentation.
+**Solution:** I focused on understanding the `auth.uid()` function and how it integrates with RLS policies. I created a robust SQL script that not only sets up the necessary tables but also applies granular policies for `SELECT`, `INSERT`, `UPDATE`, and `DELETE` operations, ensuring complete data isolation and security.
+
+### 2. Environment Configuration
+**Challenge:** Managing environment variables for different deployment stages and ensuring the Supabase client was correctly initialized with the right keys was another hurdle.
+**Solution:** I adopted a strict environment variable management strategy using `.env.local` for development. This approach, combined with a dedicated `auth.service.ts`, ensured that sensitive credentials were handled securely and consistently across the application.
+
 
 
 
