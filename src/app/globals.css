@@ -1,26 +1,104 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+@theme {
+    --color-primary: #8b5cf6;
+    /* Violet */
+    --color-primary-dark: #7c3aed;
+    --color-secondary: #ec4899;
+    /* Pink */
+    --color-accent: #06b6d4;
+    /* Cyan */
+    --color-dark-bg: #030712;
+    /* Rich Black */
+    --color-card-dark: #111827;
+
+    --radius-xl: 1rem;
+    --radius-2xl: 1.5rem;
+
+    --animate-float: float 6s ease-in-out infinite;
+    --animate-fade-in: fadeIn 0.5s ease-out forwards;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+@layer utilities {
+    .glass {
+        @apply backdrop-blur-md bg-white/70 border-b border-white/20;
+    }
+
+    .dark .glass {
+        @apply bg-black/60 border-white/10;
+    }
+
+    .glass-card {
+        @apply backdrop-blur-lg bg-white/50 border border-white/20 shadow-xl;
+    }
+
+    .dark .glass-card {
+        @apply bg-gray-900/60 border-white/10;
+    }
+
+    .text-gradient {
+        @apply bg-clip-text text-transparent bg-gradient-to-r from-primary via-secondary to-accent;
+    }
+}
+
+@layer components {
+    .card {
+        @apply bg-white dark:bg-card-dark p-6 rounded-2xl shadow-lg border border-gray-100 dark:border-gray-800 transition-all duration-300 hover:shadow-2xl hover:-translate-y-1;
+    }
+
+    .btn-primary {
+        @apply bg-gradient-to-r from-primary to-secondary text-white px-8 py-3 rounded-xl font-bold shadow-lg shadow-primary/30 transition-all active:scale-95 hover:shadow-primary/50 hover:brightness-110;
+    }
+
+    .input-primary {
+        @apply w-full px-5 py-3 rounded-xl border border-gray-200 dark:border-gray-700 bg-gray-50/50 dark:bg-gray-800/50 focus:ring-2 focus:ring-primary/50 focus:border-primary outline-none transition-all placeholder:text-gray-400 text-gray-900 dark:text-white;
+    }
+
+    .container-layout {
+        @apply max-w-5xl mx-auto px-6 py-12;
+    }
+}
+
+/* Animations */
+@keyframes float {
+
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-10px);
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+:root {
+    --background: #ffffff;
+    --foreground: #171717;
 }
 
 @media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+    :root {
+        --background: #030712;
+        /* Deep Space */
+        --foreground: #f8fafc;
+    }
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+    background: var(--background);
+    color: var(--foreground);
+    @apply antialiased selection:bg-primary/30;
 }
