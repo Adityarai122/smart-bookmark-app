@@ -37,7 +37,7 @@ export default function Home() {
               Get Started Free
             </Link>
             <Link 
-              href="https://github.com/your-username/smart-bookmark-app" 
+              href="https://github.com/Adityarai122/smart-bookmark-app" 
               target="_blank"
               className="glass px-10 py-4 rounded-xl font-semibold text-gray-700 dark:text-gray-200 hover:bg-white/80 dark:hover:bg-white/10 transition-all border border-gray-200 dark:border-white/10"
             >
